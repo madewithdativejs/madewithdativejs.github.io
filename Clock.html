@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="background: #39A2DB">
+  <div id="app"></div>
+</body>
+<script type="text/dative">
+  <div :style="bg">
+    <h1 :style="h1">Clock</h1>
+    <div :style="style">
+      <span>Time now</span>
+      <span>{{ clock }}</span>
+    </div>
+  </div>
+</script>
+  <script type="module">
+    import Dative from './dist/dative.es.js';
+    
+    var app = new Dative({
+      target: '#app',
+      data:()=>({
+        clock: new Date().toLocaleTimeString(),
+        style:{
+          textAlign: 'center',
+          fontSize: '40px',
+          fontFamily: 'monospace'
+        },
+        h1:{
+          textAlign: 'center',
+          fontSize: '60px',
+          fontFamily: 'cursive'
+        },
+        bg:{
+          background: 'rgba(351,255,75,0.05)',
+          color: '#eaedf8',
+          position: 'relative',
+          top: '150px',
+          boxShadow: '0 15px 35px rgba(0,0,0,0.05)',
+          '-webkit-box-reflect': 'below 10px linear-gradient(transparent,transparent,#0004)',
+          padding: '30px'
+        }
+      }),
+      mounted(){
+        setInterval(()=>{
+          this.data.clock = new Date().toLocaleTimeString()
+        },1000)
+      }
+    })
+    app.render();
+  </script>
+  <style>
+    @media (min-width: 899px) {
+      #app{
+        width: 1000px;
+        height: 1000px;
+      }
+    }
+  </style>
+</html>

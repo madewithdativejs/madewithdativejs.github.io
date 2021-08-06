@@ -1,0 +1,144 @@
+<div id="app"></div>
+<script type="module">
+  import Dative from './dist/dative.es.js';
+  Dative.importstyle('/css/bootstrap');
+  Dative.debug(true);
+  var app = new Dative({
+    target: '#app',
+    data: ()=>({
+      wdata: [],
+      rdata: [],
+      idata: [],
+      title: 'Weather Forcast',
+      heading: 'Weather Update',
+      icon: 'assets/img/redcloud.png',
+      city: 'Type a City and Press Enter',
+      h4: 'white'
+    }),
+    template(){
+      return `
+      <div>
+      <h1 class="text-monospace font-weight-bold text-dark" :html="title"></h1>
+      <div class="search-fm">
+        <input type="search" class="form-control sm" name="search" ref="search" bind:placeholder="city" on:keyup="$search" />
+        <button on:click="search" class="btn btn-success smm" type="button">Search</button>
+      </div>  
+        <div class="main">
+        <h1 class="we" :html="heading"></h1>
+            <h4  class="text-{{ h4 }}">City: ${this.data.wdata.name || ""}</h4>
+            <h4 class="text-{{ h4 }}">Region: ${this.data.wdata.region || ""}</h4>
+            <h4 class="text-{{ h4 }}">Country: ${this.data.wdata.country || ""}</h4>
+             <h4 class="text-{{ h4 }}">${this.data.wdata.name || ""} Is In the ${this.data.rdata.is_day === 0 ? "Night" : "Day"}</h4>
+            <h4 class="temp"><span class="cc text-${this.data.rdata.temp_c < 30 ? "success" : "danger" }">${this.data.rdata.temp_c || "0"}&#x2103;</span><br/><span class="ff text-${this.data.rdata.temp_f < 63 ? "success" : "danger" }">${this.data.rdata.temp_f || "0"}&#x2109;</span></h4>
+            <img class="icon" :src="idata.icon" alt="" />
+        </div>   
+        <h3 class="copy">Made With <span>&#9829;</span>By <a href="https://tobithedev.github.io" class="text-dark">TOBI</a></h3>
+      </div>  
+      `
+    },
+    methods:{
+     async search(){
+        var query = this.$ref.search.value;
+        var API_KEY = '2ce02765e1c647e4941175529211405';
+        await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${query}&aqi=no`)
+        .then(res=>res.json())
+        .then(data =>{
+          this.data.wdata = data.location;
+          this.data.rdata = data.current;
+          this.data.idata = data.current.condition
+        })
+        this.$ref.search.value = '';
+      },
+   async $search(event){
+     if(event.keyCode == 13){
+      var query = this.$ref.search.value;
+      var API_KEY = '2ce02765e1c647e4941175529211405';
+      await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${query}&aqi=no`)
+      .then(res=>res.json())
+      .then(data =>{
+      this.data.wdata = data.location;
+      this.data.rdata = data.current;
+      this.data.idata = data.current.condition
+      })
+      this.$ref.search.value = '';
+      }
+     }
+    }
+  })
+  app.render();
+</script>
+<style scoped>
+  body{
+    margin: 10px;
+    background: #118ADE;
+  }
+  .main{
+    position: relative;
+    margin: 5px;
+    padding: 20px;
+    color: white;
+    border-radius: 5%;
+    background: rgba(351,255,75,0.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transform-style: preserve-3d;
+    transition: 1s;
+    -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0004);
+  }
+  .search-fm{
+    float: center;
+    text-align: center;
+  }
+  .cc{
+    font-size: 30px;
+    position: absolute;
+    bottom: 75px;
+    right: 5px;
+  }
+  .ff{
+    font-size: 30px;
+    position: absolute;
+    bottom: 50px;
+    right: 5px;
+  }
+  .icon{
+    position: absolute;
+    right: 20px;
+    top: 55px;
+  }
+  h3,h4{
+    position: relative;
+    text-indent: 0px;
+  }
+  @font-face {
+    font-family: 'ocon';
+    src: url('/assets/fonts/josefin_sans_regular.ttf');
+  }
+  @font-face {
+    font-family: 'Fonti';
+    src: url('/assets/fonts/josefin_sans_regular.ttf');
+  }
+  @font-face {
+    font-family: 'ss';
+    src: url('/assets/fonts/Entypo.ttf');
+  }
+  .we{
+    font-family: "Fonti";
+  }
+  h4{
+    font-family: "ocon";
+  }
+  .sm{
+    width: 50%;
+  }
+  .smm{
+    position: absolute;
+    top: 47px;
+    left: 55%;
+  }
+  h1{
+    z-index: 100;
+  }
+  .copy{
+    font-family: "Fonti";
+  }
+</style>

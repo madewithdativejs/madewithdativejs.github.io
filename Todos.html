@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+  <html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todos with Dative</title>
+  </head>
+  
+  <body>
+<div id="app"></div>
+<script type="module">
+import Dative from './dist/dative.es.js';
+import utlis from './utlis.js';
+Dative.importstyle('/css/bootstrap')
+ var namespace = 'dative336245-todos-storage';
+ var app = new Dative({
+  el: "#app",
+  data: ()=> ({
+    todos: [],
+    placeholder: 'What needs to be done?',
+  }),
+  template(){
+   return `
+      <div>
+          <h1 class="header">Todos App</h1>
+          <div class="todoapp">
+            <input type="text" class="form-control sm" ref="todd" :placeholder="placeholder" />
+            <button class="btn btn-danger add" type="button" on:click="add"><b class="plus">+</b></button>
+            <div class="main">
+       ${this.data.todos.map((todo,index)=>{
+         return`
+            <li key="${index}">${todo.text}</li>
+            <button class="clear" type="button" on:click="clear" ref="clear" index="${index}">&times;</button>
+            `;        
+          }).join("")
+       }
+      <p class="text-${this.data.todos.length > 1 ? "white" : "danger"} text-center">You have <b :text="todos.length"></b> ${utlis.pluralize(this.data.todos.length,"todo")} On Your List ${this.data.todos.length > 1 ? "&#128512;" : "&#128542;"}</p>
+     <button type="button" class="btn btn-info smm center" on:click="clearAll">Clear All</button>
+     </div>
+     </div>
+      </div>
+    `; 
+  },
+  methods:{
+    add(){
+      var text = this.$ref.todd.value;
+      this.data.todos.push({text});
+    },
+    clear(){
+      this.data.todos.splice(this.$ref.clear.getAttribute("index"),1)
+    },
+    clearAll(){
+       this.data.todos.splice(0)
+    }
+  },
+  mounted(){
+    
+  }
+ });
+ app.render();
+</script>
+<style scoped>
+    body{
+    background: #118ADE;
+    width: 100%;
+    }
+   .clear{
+    position: relative;
+    left: 280px;
+    font-size: 25px;
+    bottom: 55px;
+    color: #fff;
+    background: #FF2727;
+    outline: none;
+    border: none;
+    width: 25px;
+    height: 55px;
+    border-radius: 5%;
+  }
+  .plus{
+    font-size: 20px;
+    position: relative;
+    bottom: 2px;
+  }
+  .clear:active{
+    background: #FF4;
+  }
+  .todoapp{
+    margin: 10px;
+    padding: 20px;
+    background: rgba(351,255,255,0.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transform-style: preserve-3d;
+    transition: 1s;
+    border-radius: 10px;
+  }
+  input{
+    padding: 10px;
+    border-radius: 0;
+  }
+  .dv{
+    text-align: center;
+  }
+  .add{
+    position: absolute;
+    top: 30px;
+    right: 49px;
+    width: 50px;
+    height: 33px;
+    border-top-right-radius: 5px;
+  }
+  .header{
+    background: #282828;
+    color: #fff;
+    text-align: center;
+  }
+  li{
+    padding: 15px 5px;
+    margin: 0px;
+    list-style: none; 
+    background: #333;
+    color: #fff;
+  }
+  .sm{
+    margin: 10px;
+    width: 70%;
+  }
+  .smm{
+    width: 80px;
+  }  
+  .center{
+    position: relative;
+    left: 100px;
+  }
+  @media (max-width: 333px) {
+    body{
+      width: 333px;
+    }
+    .add{
+      right: 40px;
+    }
+    .clear{
+      left: 260px;
+      bottom: 50px;
+      height: 50px;
+    }
+  }
+</style>
+</html>
