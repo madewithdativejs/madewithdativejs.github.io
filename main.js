@@ -9,7 +9,7 @@ docute.init({
   icons: [{
     icon: 'github',
     label: 'Contribute on GitHub',
-    link: 'https://github.com/Tobithedev/MadeWithDativeJsa'
+    link: 'https://github.com/Tobithedev/MadeWithDativeJs'
   }],
   sidebar: false
 })
