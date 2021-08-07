@@ -22,7 +22,6 @@
       <h1 class="text-monospace font-bold text-dark-500 text-lg">{{ title }}</h1>
       <div class="search-fm">
         <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="search" ref="search" bind:placeholder="city" on:keyup="$search" />
-        <p :text="err"></p>
       </div>  
         <div class="main">
         <h1 class="font-bold text-lg" :html="heading"></h1>
@@ -49,7 +48,6 @@
           this.data.rdata = data.current;
           this.data.idata = data.current.condition
         })
-        .catch(err => this.data.err = 'Error')
       this.$ref.search.value = '';
       }
      }
