@@ -166,14 +166,14 @@ function parsetext(text,opts,store) {
      var temp = opts || store;
      sub.forEach(function(item) {
        if (!temp[item]) {
-         return eval(item);
+         return '';
        }
        temp = temp[item];
      });
      return temp;
    }else{
      var self = opts;
-     if (!self[text$]) return eval(text$);
+     if (!self[text$]) return '';
      return self[text$]
    }
   })
