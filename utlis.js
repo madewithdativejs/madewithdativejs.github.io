@@ -12,7 +12,7 @@ export default {
         return uuid;
       },
   pluralize(count, word) {
-      return count === 1 ? word : word + 's';
+      return count > 0 ? `${word}s` : word;
     },
   store(namespace, data) {
       if (data) {

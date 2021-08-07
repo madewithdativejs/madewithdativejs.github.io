@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+  <script type="module">
+    import Dative from 'https://cdn.jsdelivr.net/gh/dativeJs/dativejs@main/dist/dative.es.min.js';
+    var app = new Dative({
+      el: '#app',
+      template: `
+        <h1>Please Wait.....</h1>
+      `
+    })
+    app.render()
+  </script>
+  <script>  
+    setTimeout(()=>{
+    window.location.replace("index.html");
+    },3000)
+  </script>
+  <style>
+    .ft{
+      font-size: 60px;
+    }
+  </style>
+</html>

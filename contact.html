@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/tailwind.css">
+    <title>Contact Us</title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+  <script type="text/dative">
+    <nav class="bg-white shadow-lg">
+			<div class="max-w-6xl mx-auto px-4">
+				<div class="flex justify-between">
+					<div class="flex space-x-7">
+						<div>
+							<a href="#" class="flex items-center py-4 px-2">
+								<img src="src/logo.svg" alt="Logo" class="h-8 w-8 mr-2">
+								<span class="font-semibold text-gray-500 text-lg">{{ title }}</span>
+							</a>
+						</div>
+						<div class="hidden md:flex items-center space-x-1">
+							<a href="index.html" class="py-4 px-2 text-gray-500 font-semibold ">Home</a>
+							<a href="template.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Template</a>
+							<a href="#projects" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Projects</a>
+							<a href="contact.html" class="py-4 px-2 border-green-500 text-green-500 font-semibold border-b-4 hover:text-green-500 transition duration-300">Contact Us</a>
+						</div>
+					</div>
+					<div class="hidden md:flex items-center space-x-3 ">
+						<a href="mailto:ucheemekatobi@gmail.com" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 bg-green-100 hover:text-white transition duration-300">Email Us</a>
+					</div>
+					<div class="md:hidden flex items-center">
+						<button class="outline-none mobile-menu-button" on:click="navopen">
+						<svg class=" w-6 h-6 text-gray-500 hover:text-green-500 "
+							x-show="!showMenu"
+							fill="none"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path d="M4 6h16M4 12h16M4 18h16"></path>
+						</svg>
+					</button>
+					</div>
+				</div>
+			</div>
+			<div class="hidden mobile-menu" ref="menu">
+				<ul class="">
+					<li><a href="index.html" class="block text-sm px-2 py-4 hover:bg-green-500  transition duration-300">Home</a></li>
+					<li><a href="/template.html" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Template</a></li>
+					<li><a href="#" @click="redirect" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Projects</a></li>
+					<li class="active"><a href="/contact.html" class="block text-white text-sm px-2 py-4 bg-green-500 font-semibold">Contact Us</a></li>
+				</ul>
+			</div>
+			</nav>
+        <h1 class="font-bold vx">Contact Us</h1>
+       
+        <div>
+          <div>
+            <h1><i class="fa fa-inbox"></i>: ucheemekatobi@gmail.com</h2>
+          </div>
+          <div>
+            <h1><i class="fab fa-facebook"></i>: DativeJs</h1>
+          </div>
+        </div>
+  </script>
+  <script type="module">
+    import Dative from 'https://cdn.jsdelivr.net/gh/dativeJs/dativejs@main/dist/dative.es.min.js';
+    import './src/all.js';
+    Dative.importstyle('css/all')
+    var app = new Dative({
+      el: '#app',
+      data:{
+        title: 'Made with DativeJs',
+        link: '/'
+      },
+      methods:{
+        navopen(){
+          this.$ref.menu.classList.toggle("hidden")
+        },
+        redirect(){
+          window.location.replace("index.html?#projects");
+        }
+      }
+    })
+    app.render()
+  </script>
+  <style scoped>
+    .vx{
+      font-size: 30px;
+    }
+    .fa-inbox{
+      color: red;
+    }
+    .fa-facebook{
+      color: #4464a8;
+    }
+  </style>
+</html>

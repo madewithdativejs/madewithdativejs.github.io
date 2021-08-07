@@ -8,25 +8,27 @@
   </head>
   
   <body>
-<div id="app"></div>
+<div id="app" ></div>
 <script type="module">
-import Dative from './dist/dative.es.js';
+import Dative from 'https://cdn.jsdelivr.net/gh/dativeJs/dativejs@main/dist/dative.es.min.js';
 import utlis from './utlis.js';
-Dative.importstyle('css/bootstrap')
- var namespace = 'dative336245-todos-storage';
+
+Dative.importstyle('css/tailwind')
  var app = new Dative({
   el: "#app",
   data: ()=> ({
     todos: [],
     placeholder: 'What needs to be done?',
+    h1:{
+      textAlign: 'center'
+    }
   }),
   template(){
    return `
       <div>
-          <h1 class="header">Todos App</h1>
+          <h1 class="header text-xl text-lg font-bold">Todos App</h1>
           <div class="todoapp">
-            <input type="text" class="form-control sm" ref="todd" :placeholder="placeholder" />
-            <button class="btn btn-danger add" type="button" on:click="add"><b class="plus">+</b></button>
+            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ref="todd" :placeholder="placeholder" on:keyup="add"/><br /><br />
             <div class="main">
        ${this.data.todos.map((todo,index)=>{
          return`
@@ -35,17 +37,20 @@ Dative.importstyle('css/bootstrap')
             `;        
           }).join("")
        }
-      <p class="text-${this.data.todos.length > 1 ? "white" : "danger"} text-center">You have <b :text="todos.length"></b> ${utlis.pluralize(this.data.todos.length,"todo")} On Your List ${this.data.todos.length > 1 ? "&#128512;" : "&#128542;"}</p>
-     <button type="button" class="btn btn-info smm center" on:click="clearAll">Clear All</button>
+      <p class="${this.data.todos.length > 1 ? "text-white" : "text-red-600"} text-center">You have <b :text="todos.length"></b> ${utlis.pluralize(this.data.todos.length,"todo")} On Your List ${this.data.todos.length > 1 ? "&#128512;" : "&#128542;"}</p><br />
+     <button type="button" class="bg-gray-500 py-2 rounded smm center" on:click="clearAll">Clear All</button>
      </div>
      </div>
+       <h3 class="text" :style="h1">Made With <span>&#9829;</span>By <a href="https://tobithedev.github.io" class="text-green-500">TOBI</a></h3>
       </div>
     `; 
   },
   methods:{
-    add(){
-      var text = this.$ref.todd.value;
-      this.data.todos.push({text});
+    add(e){
+      if(e.keyCode == 13){
+        var text = this.$ref.todd.value;
+        this.data.todos.push({text});
+      }
     },
     clear(){
       this.data.todos.splice(this.$ref.clear.getAttribute("index"),1)
@@ -105,7 +110,7 @@ Dative.importstyle('css/bootstrap')
   .add{
     position: absolute;
     top: 30px;
-    right: 49px;
+    right: 46px;
     width: 50px;
     height: 33px;
     border-top-right-radius: 5px;

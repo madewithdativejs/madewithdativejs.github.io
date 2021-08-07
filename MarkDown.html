@@ -11,8 +11,9 @@
   <div id="markedapp"></div>
 </body>
  <script type="module">
-   import Dative from './dist/dative.es.js';
+   import Dative from 'https://cdn.jsdelivr.net/gh/dativeJs/dativejs@main/dist/dative.es.min.js';
    import './src/marked.min.js';
+   Dative.importstyle('css/mdb.min')
    var Markdown = new Dative({
      target: '#markedapp',
      data(){
@@ -20,7 +21,7 @@
          msg: '# Hello',
          style: {
            position: 'relative',
-           right: '5px',
+           right: '0px',
            width: '100%',
            height: '200px',
            background: '#282828',
@@ -50,7 +51,8 @@
            color: '#fff',
          },
          h1:{
-           color: '#fff'
+           color: '#fff',
+           textAlign: 'center'
          },
          title: 'MarkDown Editor'
        }
@@ -71,6 +73,7 @@
             :style="style" 
             :text="msg"
             on:input="markdowns"
+            class="resize-none border rounded-md"
             ></textarea><br /><br />
            <i 
             class="fab fa-html5 fa-2x" 
@@ -80,8 +83,9 @@
           <div
             :style="output" 
             ref="output"
-            class="magswdss">
+            >
             </div>
+       <h3 class="text-dark" :style="h1">Made With <span>&#9829;</span>By <a href="https://tobithedev.github.io" class="text-success">TOBI</a></h3>
         </div>
        `;
      },
