@@ -10,7 +10,8 @@ var app = new Dative({
     title: 'Made with DativeJs',
     link: '/',
     date: new Date().getFullYear(),
-    projects: []
+    projects: [],
+    img: 'https://dativejs.js.org/public/logo.png'
   },
   template(){
     return `
@@ -20,7 +21,7 @@ var app = new Dative({
 					<div class="flex space-x-7">
 						<div>
 							<a href="#" class="flex items-center py-4 px-2">
-								<img src="src/logo.svg" alt="Logo" class="h-8 w-8 mr-2">
+								<img :src="img" alt="Logo" class="h-8 w-8 mr-2">
 								<span class="font-semibold text-gray-500 text-lg">{{ title }}</span>
 							</a>
 						</div>
@@ -72,7 +73,7 @@ var app = new Dative({
 			      <p class="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#${project.name.toLowerCase().split(' ').join('-')}</p>
 			      <a href="${project.link}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">${project.name}</a>
 			      <p class="mt-2 text-gray-500">${project.description}</p>
-			      <p>Created by <span class="mt-2 text-blue-500">${project.author || ''}</span></p>
+			      <p>Created by <span class="mt-2 text-blue-500">${project.author || 'Anonymus'}</span></p>
 			    </div>
 			    </a>
 			  </div><hr /><br />`			  
