@@ -65,13 +65,13 @@ var app = new Dative({
 			${
 			  this.data.projects.map((project)=>{
 			  return `<div class="md:flex px-4">
-			   <a href="/${project.link}">
+			   <a href="/${project.link}" target="_blank">
 			    <div class="md:flex-shrink-0">
 			      <img class="h-48 w-full object-cover md:w-48" src="${project.image}" alt="${project.name}">
 			    </div>
 			    <div class="p-8">
 			      <p class="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#${project.name.toLowerCase().split(' ').join('-')}</p>
-			      <a href="${project.link}" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">${project.name}</a>
+			      <a href="${project.link}" target="_blank" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">${project.name}</a>
 			      <p class="mt-2 text-gray-500">${project.description}</p>
 			      <p>Created by <span class="mt-2 text-blue-500">${project.author || 'Anonymus'}</span></p>
 			    </div>
