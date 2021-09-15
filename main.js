@@ -25,12 +25,7 @@ var app = new Dative({
 								<span class="font-semibold text-gray-500 text-lg">{{ title }}</span>
 							</a>
 						</div>
-						<div class="hidden md:flex items-center space-x-1">
-							<a href="index.html" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">Home</a>
-							<a href="template.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Template</a>
-							<a href="#projects" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Projects</a>
-							<a href="contact.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
-						</div>
+						
 					</div>
 					<!-- Secondary Navbar items -->
 					<div class="hidden md:flex items-center space-x-3 ">
@@ -56,16 +51,14 @@ var app = new Dative({
 			<div class="hidden mobile-menu" ref="menu">
 				<ul class="">
 					<li class="active"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
-					<li><a href="/template.html" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Template</a></li>
-					<li><a href="#projects" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Projects</a></li>
-					<li><a href="/contact.html" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+					 
 				</ul>
 			</div></nav><hr /><br/><br /><br /><br />
 			<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl px-1" id="projects">
 			${
 			  this.data.projects.map((project)=>{
 			  return `<div class="md:flex px-4">
-			   <a href="/${project.link}" target="_blank">
+			   <a href="${project.link}" target="_blank">
 			    <div class="md:flex-shrink-0">
 			      <img class="h-48 w-full object-cover md:w-48" src="${project.image}" alt="${project.name}">
 			    </div>
