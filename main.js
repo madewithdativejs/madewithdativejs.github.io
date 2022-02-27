@@ -1,4 +1,4 @@
-import Dative from 'https://cdn.jsdelivr.net/gh/dativeJs/dativejs@main/dist/dative.es.min.js';
+import Dative from 'https://cdn.jsdelivr.net/gh/dativeJs/dativejs@v1/dist/dative.es.min.js';
 
 import './src/all.js';
 
